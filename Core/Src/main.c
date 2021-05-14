@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdlib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +34,13 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define PWMA   TIM1->CCR1  //PA8
+#define Balance_Kp  450
+#define Balance_Kd 1
+#define Velocity_Kp 80
+#define Velocity_Ki 1
+#define ZHONGZHI 0
+#define Gyro_Banlance 77
+#define MAX_Encoder_Integral 8000 //10000
 /*
 #define AIN2   PBout(15)
 #define AIN1   PBout(14)
@@ -41,6 +48,8 @@
 #define BIN2   PBout(12)
 */
 #define PWMB   TIM1->CCR4  //PA11
+#define PWM_Amplitude 6900 //===PWM满幅是7200 限制在6900
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -68,6 +77,10 @@ osThreadId nonblockHandle;
 uint16_t test_16;
 uint16_t battery_adc;
 int16_t battery_volt;
+float Encoder_Integral;
+float Target_Velocity;
+uint8_t Flag_Qian, Flag_Hou, Flag_Left, Flag_Right;
+int encoder_left, encoder_right;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -132,10 +145,10 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_12,GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_14,GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_15,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET); //BIN2
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);   //BIN1 
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET); //AIN1
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);   //AIN2
 	PWMA = 500;
 	PWMB = 500; 
   /* USER CODE END 2 */
@@ -639,6 +652,72 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void set_Pwm(int32_t motor1, int32_t motor2)
+{
+	if (motor1 > 0){
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET);     //AIN1
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);   //AIN2
+  }
+	else
+  {
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET); //AIN1
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);   //AIN2
+  }
+  motor1 = (motor1 < -PWM_Amplitude) ? -PWM_Amplitude : motor1;
+  motor1 = (motor1 > PWM_Amplitude) ? PWM_Amplitude : motor1;
+	PWMA = abs(motor1);
+	if (motor2 > 0)
+  {
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);    //BIN2
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);   //BIN1 
+  }
+	else
+  {
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);   //BIN2
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);   //BIN1    
+  }
+  motor2 = (motor2 < -PWM_Amplitude) ? -PWM_Amplitude : motor2;
+  motor2 = (motor2 > PWM_Amplitude) ? PWM_Amplitude : motor2; 
+	PWMB = abs(motor2);
+}
+
+// 平衡PID 速度PID
+int pid_Balance_Velocity(float angle,float gyro)
+{
+  float Bias;
+  int balance;
+	static float Velocity, Encoder_Least, Encoder, Movement;
+	
+	// 平衡
+  Bias = angle - ZHONGZHI;										   //===求出平衡的角度中值 和机械相关
+  balance = Balance_Kp * Bias + (gyro + Gyro_Banlance) * Balance_Kd; //===计算平衡控制的电机PWM  PD控制 
+
+	
+	//=============遥控前进后退部分=======================//
+
+	Target_Velocity = 110;
+	if (1 == Flag_Qian)
+		Movement = -Target_Velocity; //===前进标志位置1
+	else if (1 == Flag_Hou)
+		Movement = Target_Velocity; //===后退标志位置1
+	else
+		Movement = 0;
+
+	//=============速度PI控制器=======================//
+	Encoder_Least = (encoder_left + encoder_right) - 0; //===获取最新速度偏差==测量速度（左右编码器之和）-目标速度（此处为零）
+	Encoder *= 0.8;										//===一阶低通滤波器
+	Encoder += Encoder_Least * 0.2;						//===一阶低通滤波器
+	Encoder_Integral += Encoder;						//===积分出位移 积分时间：10ms
+	Encoder_Integral = Encoder_Integral - Movement;		//===接收遥控器数据，控制前进后退
+	if (Encoder_Integral > MAX_Encoder_Integral)
+		Encoder_Integral = MAX_Encoder_Integral; //===积分限幅
+	if (Encoder_Integral < -MAX_Encoder_Integral)
+		Encoder_Integral = -MAX_Encoder_Integral;					   //===积分限幅
+	Velocity = Encoder * Velocity_Kp + Encoder_Integral * Velocity_Ki; //===速度控制
+
+	return balance + Velocity;
+
+}
 
 /* USER CODE END 4 */
 
