@@ -24,6 +24,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdlib.h"
+#include "mpu6050.h"
+#include "math.h"
+#include "filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,6 +36,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define PI acos(-1)
 #define PWMA   TIM1->CCR1  //PA8
 #define Balance_Kp  450
 #define Balance_Kd 1
@@ -81,6 +85,9 @@ float Encoder_Integral;
 float Target_Velocity;
 uint8_t Flag_Qian, Flag_Hou, Flag_Left, Flag_Right;
 int encoder_left, encoder_right;
+int Temperature;
+float Angle_Balance, Gyro_Balance, Gyro_Turn;
+float Acceleration_Z,Target_Velocity,Turn_Amplitude;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -143,14 +150,20 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+	MPU6050_initialize();
+	DMP_Init();	
+	
+	
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET); //BIN2
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);   //BIN1 
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET); //AIN1
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);   //AIN2
-	PWMA = 500;
-	PWMB = 500; 
+	PWMA = 1000;
+	PWMB = 1000; 
+	
+	
   /* USER CODE END 2 */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -692,7 +705,6 @@ int pid_Balance_Velocity(float angle,float gyro)
   Bias = angle - ZHONGZHI;										   //===求出平衡的角度中值 和机械相关
   balance = Balance_Kp * Bias + (gyro + Gyro_Banlance) * Balance_Kd; //===计算平衡控制的电机PWM  PD控制 
 
-	
 	//=============遥控前进后退部分=======================//
 
 	Target_Velocity = 110;
@@ -719,6 +731,51 @@ int pid_Balance_Velocity(float angle,float gyro)
 
 }
 
+
+/**************************************************************************
+函数功能：获取角度 三种算法经过我们的调校，都非常理想 
+入口参数：获取角度的算法 1：DMP  2：卡尔曼 3：互补滤波
+返回  值：无
+**************************************************************************/
+void Get_Angle(uint8_t way)
+{
+	float Accel_Y, Accel_Angle, Accel_Z, Gyro_X, Gyro_Z;
+	Temperature = Read_Temperature(); //===读取MPU6050内置温度传感器数据，近似表示主板温度。
+	if (way == 1)					  //===DMP的读取在数据采集中断读取，严格遵循时序要求
+	{
+		Read_DMP();				   //===读取加速度、角速度、倾角
+		Angle_Balance = -Roll;	 //===更新平衡倾角
+		Gyro_Balance = -gyro[0];   //===更新平衡角速度
+		Gyro_Turn = gyro[2];	   //===更新转向角速度
+		Acceleration_Z = accel[2]; //===更新Z轴加速度计
+	}
+	else
+	{
+		Gyro_X = (I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_XOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_XOUT_L);	//读取Y轴陀螺仪
+		Gyro_Z = (I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_ZOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_ZOUT_L);	//读取Z轴陀螺仪
+		Accel_Y = (I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_YOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_YOUT_L); //读取X轴加速度计
+		Accel_Z = (I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_ZOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_ZOUT_L); //读取Z轴加速度计
+		if (Gyro_X > 32768)
+			Gyro_X -= 65536; //数据类型转换  也可通过short强制类型转换
+		if (Gyro_Z > 32768)
+			Gyro_Z -= 65536; //数据类型转换
+		if (Accel_Y > 32768)
+			Accel_Y -= 65536; //数据类型转换
+		if (Accel_Z > 32768)
+			Accel_Z -= 65536;							  //数据类型转换
+		Gyro_Balance = Gyro_X;							  //更新平衡角速度
+		Accel_Angle = atan2(Accel_Y, Accel_Z) * 180 / PI; //计算倾角
+		Gyro_X = Gyro_X / 16.4;							  //陀螺仪量程转换
+		if (way == 2)
+			Kalman_Filter(Accel_Angle, Gyro_X); //卡尔曼滤波
+		else if (way == 3)
+			Yijielvbo(Accel_Angle, Gyro_X); //互补滤波
+		Angle_Balance = angle;				//更新平衡倾角
+		Gyro_Turn = Gyro_Z;					//更新转向角速度
+		Acceleration_Z = Accel_Z;			//===更新Z轴加速度计
+	}
+}
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -742,7 +799,6 @@ void StartDefaultTask(void const * argument)
 				battery_adc=HAL_ADC_GetValue(&hadc1);
 				battery_volt = battery_adc*3.3*11*100/4096;
 		}
-		
 
 		
 		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
@@ -764,7 +820,7 @@ void StartTask_nonblock(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-		//HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+		Get_Angle(2);
     osDelay(1);
   }
   /* USER CODE END StartTask_nonblock */

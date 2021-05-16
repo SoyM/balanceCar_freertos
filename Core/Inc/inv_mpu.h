@@ -51,6 +51,8 @@ struct int_param_s {
 #define MPU_INT_STATUS_DMP_4            (0x1000)
 #define MPU_INT_STATUS_DMP_5            (0x2000)
 
+int i2cWrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data);
+
 /* Set up APIs */
 int mpu_init(void);
 int mpu_init_slave(void);

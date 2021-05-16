@@ -362,7 +362,8 @@ extern	short gyro[3], accel[3];
 extern int16_t Gx_offset,Gy_offset,Gz_offset;
 extern float Acc1G_Values;
 extern float Pitch,Roll; 
-//���ⲿ���õ�API
+uint8_t IICwriteBits(uint8_t dev,uint8_t reg,uint8_t bitStart,uint8_t length,uint8_t data);
+uint8_t I2C_ReadOneByte(unsigned char I2C_Addr,unsigned char addr);
 void MPU6050_initialize(void); //��ʼ��
 uint8_t MPU6050_testConnection(void); //���MPU6050�Ƿ����
 //��ȡADCֵ

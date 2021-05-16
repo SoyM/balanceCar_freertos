@@ -14,7 +14,11 @@
  */
 
 #include "mpu6050.h"
-
+#include "cmsis_os.h"
+#include "string.h"
+#include "math.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
@@ -39,7 +43,7 @@
 
 #define i2c_write   i2cWrite
 #define i2c_read    i2cRead
-#define delay_ms    delay_ms
+#define delay_ms    HAL_Delay
 #define get_ms      myget_ms
 
 //static int reg_int_cb(struct int_param_s *int_param)
@@ -708,6 +712,22 @@ static int set_int_enable(unsigned char enable)
 }
 
 
+int i2cWrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data)
+{
+
+	HAL_I2C_Mem_Write(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, data, len, 10);
+
+	return 0;
+}
+
+
+int i2cRead(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
+{
+	HAL_I2C_Mem_Read(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, buf, len, 10);
+	return 0;  
+}
+
+
 /**
  *  @brief      Register dump for testing.
  *  @return     0 if successful.
@@ -785,7 +805,7 @@ int mpu_init(void)
         else if (rev == 2)
             st.chip_cfg.accel_half = 0;
         else {
-            log_e("Unsupported software product rev %d.\n",rev);
+            //log_e("Unsupported software product rev %d.\n",rev);
             return -1;
         }
     } else {
@@ -793,10 +813,10 @@ int mpu_init(void)
             return -1;
         rev = data[0] & 0x0F;
         if (!rev) {
-            log_e("Product ID read as 0 indicates device is either incompatible or an MPU3050.\r\n");
+            //log_e("Product ID read as 0 indicates device is either incompatible or an MPU3050.\r\n");
             return -1;
         } else if (rev == 4) {
-            log_i("Half sensitivity part found.\r\n");
+            //log_i("Half sensitivity part found.\r\n");
             st.chip_cfg.accel_half = 1;
         } else
             st.chip_cfg.accel_half = 0;
@@ -1930,7 +1950,7 @@ static int accel_self_test(long *bias_regular, long *bias_st)
 
     get_accel_prod_shift(st_shift);
     for(jj = 0; jj < 3; jj++) {
-        st_shift_cust = labs(bias_regular[jj] - bias_st[jj]) / 65536.f;
+        st_shift_cust = abs(bias_regular[jj] - bias_st[jj]) / 65536.f;
         if (st_shift[jj]) {
             st_shift_var = st_shift_cust / st_shift[jj] - 1.f;
             if (fabs(st_shift_var) > test.max_accel_var)

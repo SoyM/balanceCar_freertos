@@ -11,6 +11,7 @@
  */
 
 #include "mpu6050.h"
+#include "string.h"
 
 #define  MOTION_DRIVER_TARGET_MSP430
 /* The following functions must be defined for this platform:
