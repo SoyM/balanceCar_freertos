@@ -235,15 +235,15 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
 }
 
 /**
-* @brief TIM_Base MSP Initialization
+* @brief TIM_Encoder MSP Initialization
 * This function configures the hardware resources used in this example
-* @param htim_base: TIM_Base handle pointer
+* @param htim_encoder: TIM_Encoder handle pointer
 * @retval None
 */
-void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(htim_base->Instance==TIM2)
+  if(htim_encoder->Instance==TIM2)
   {
   /* USER CODE BEGIN TIM2_MspInit 0 */
 
@@ -265,19 +265,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 
   /* USER CODE END TIM2_MspInit 1 */
   }
-
-}
-
-/**
-* @brief TIM_IC MSP Initialization
-* This function configures the hardware resources used in this example
-* @param htim_ic: TIM_IC handle pointer
-* @retval None
-*/
-void HAL_TIM_IC_MspInit(TIM_HandleTypeDef* htim_ic)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(htim_ic->Instance==TIM4)
+  else if(htim_encoder->Instance==TIM4)
   {
   /* USER CODE BEGIN TIM4_MspInit 0 */
 
@@ -350,14 +338,14 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
 }
 
 /**
-* @brief TIM_Base MSP De-Initialization
+* @brief TIM_Encoder MSP De-Initialization
 * This function freeze the hardware resources used in this example
-* @param htim_base: TIM_Base handle pointer
+* @param htim_encoder: TIM_Encoder handle pointer
 * @retval None
 */
-void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
+void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* htim_encoder)
 {
-  if(htim_base->Instance==TIM2)
+  if(htim_encoder->Instance==TIM2)
   {
   /* USER CODE BEGIN TIM2_MspDeInit 0 */
 
@@ -375,18 +363,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
 
   /* USER CODE END TIM2_MspDeInit 1 */
   }
-
-}
-
-/**
-* @brief TIM_IC MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param htim_ic: TIM_IC handle pointer
-* @retval None
-*/
-void HAL_TIM_IC_MspDeInit(TIM_HandleTypeDef* htim_ic)
-{
-  if(htim_ic->Instance==TIM4)
+  else if(htim_encoder->Instance==TIM4)
   {
   /* USER CODE BEGIN TIM4_MspDeInit 0 */
 

@@ -52,7 +52,7 @@
 #define BIN2   PBout(12)
 */
 #define PWMB   TIM1->CCR4  //PA11
-#define PWM_Amplitude 6900 //===PWM满幅是7200 限制在6900
+#define PWM_Amplitude 6900 //===PWM满幅�?7200 限制�?6900
 
 /* USER CODE END PD */
 
@@ -88,6 +88,7 @@ int encoder_left, encoder_right;
 int Temperature;
 float Angle_Balance, Gyro_Balance, Gyro_Turn;
 float Acceleration_Z,Target_Velocity,Turn_Amplitude;
+int Encoder_Left,Encoder_Right;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -150,16 +151,24 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+	HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
+	HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
+	
 	MPU6050_initialize();
 	DMP_Init();	
 	
 	
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET); //BIN2
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);   //BIN1 
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET); //AIN1
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);   //AIN2
+	// HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET); //BIN2
+	// HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);   //BIN1 
+	// HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET); //AIN1
+	// HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET);   //AIN2
+
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET); //BIN2
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);   //BIN1 
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET); //AIN1
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);   //AIN2  
 	PWMA = 1000;
 	PWMB = 1000; 
 	
@@ -204,7 +213,7 @@ int main(void)
   while (1)
   {
 		//HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-		vTaskDelay(1);		
+		vTaskDelay(100);		
 
 		
 		
@@ -421,9 +430,8 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 0 */
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_Encoder_InitTypeDef sConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_IC_InitTypeDef sConfigIC = {0};
 
   /* USER CODE BEGIN TIM2_Init 1 */
 
@@ -434,34 +442,22 @@ static void MX_TIM2_Init(void)
   htim2.Init.Period = 65535;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_IC_Init(&htim2) != HAL_OK)
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 0;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 0;
+  if (HAL_TIM_Encoder_Init(&htim2, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
-  sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
-  sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
-  sConfigIC.ICFilter = 0;
-  if (HAL_TIM_IC_ConfigChannel(&htim2, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_IC_ConfigChannel(&htim2, &sConfigIC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -483,8 +479,8 @@ static void MX_TIM4_Init(void)
 
   /* USER CODE END TIM4_Init 0 */
 
+  TIM_Encoder_InitTypeDef sConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
-  TIM_IC_InitTypeDef sConfigIC = {0};
 
   /* USER CODE BEGIN TIM4_Init 1 */
 
@@ -495,25 +491,22 @@ static void MX_TIM4_Init(void)
   htim4.Init.Period = 65535;
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_IC_Init(&htim4) != HAL_OK)
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 15;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 15;
+  if (HAL_TIM_Encoder_Init(&htim4, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim4, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
-  sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
-  sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
-  sConfigIC.ICFilter = 0;
-  if (HAL_TIM_IC_ConfigChannel(&htim4, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_TIM_IC_ConfigChannel(&htim4, &sConfigIC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -695,32 +688,32 @@ void set_Pwm(int32_t motor1, int32_t motor2)
 }
 
 // 平衡PID 速度PID
-int pid_Balance_Velocity(float angle,float gyro)
+int pid_Balance_Velocity(float angle,float gyro, int encoder_left, int encoder_right)
 {
   float Bias;
   int balance;
 	static float Velocity, Encoder_Least, Encoder, Movement;
 	
 	// 平衡
-  Bias = angle - ZHONGZHI;										   //===求出平衡的角度中值 和机械相关
+  Bias = angle - ZHONGZHI;										   //===求出平衡的角度中�? 和机械相�?
   balance = Balance_Kp * Bias + (gyro + Gyro_Banlance) * Balance_Kd; //===计算平衡控制的电机PWM  PD控制 
 
-	//=============遥控前进后退部分=======================//
+	//=============遥控前进后�??部分=======================//
 
 	Target_Velocity = 110;
 	if (1 == Flag_Qian)
 		Movement = -Target_Velocity; //===前进标志位置1
 	else if (1 == Flag_Hou)
-		Movement = Target_Velocity; //===后退标志位置1
+		Movement = Target_Velocity; //===后�??标志位置1
 	else
 		Movement = 0;
 
-	//=============速度PI控制器=======================//
-	Encoder_Least = (encoder_left + encoder_right) - 0; //===获取最新速度偏差==测量速度（左右编码器之和）-目标速度（此处为零）
-	Encoder *= 0.8;										//===一阶低通滤波器
-	Encoder += Encoder_Least * 0.2;						//===一阶低通滤波器
-	Encoder_Integral += Encoder;						//===积分出位移 积分时间：10ms
-	Encoder_Integral = Encoder_Integral - Movement;		//===接收遥控器数据，控制前进后退
+	//=============速度PI控制�?=======================//
+	Encoder_Least = (encoder_left + encoder_right) - 0; //===获取�?新�?�度偏差==测量速度（左右编码器之和�?-目标速度（此处为零）
+	Encoder *= 0.8;										//===�?阶低通滤波器
+	Encoder += Encoder_Least * 0.2;						//===�?阶低通滤波器
+	Encoder_Integral += Encoder;						//===积分出位�? 积分时间�?10ms
+	Encoder_Integral = Encoder_Integral - Movement;		//===接收遥控器数据，控制前进后�??
 	if (Encoder_Integral > MAX_Encoder_Integral)
 		Encoder_Integral = MAX_Encoder_Integral; //===积分限幅
 	if (Encoder_Integral < -MAX_Encoder_Integral)
@@ -733,28 +726,28 @@ int pid_Balance_Velocity(float angle,float gyro)
 
 
 /**************************************************************************
-函数功能：获取角度 三种算法经过我们的调校，都非常理想 
-入口参数：获取角度的算法 1：DMP  2：卡尔曼 3：互补滤波
-返回  值：无
+函数功能：获取角�? 三种算法经过我们的调校，都非常理�? 
+入口参数：获取角度的算法 1：DMP  2：卡尔曼 3：互补滤�?
+返回  值：�?
 **************************************************************************/
 void Get_Angle(uint8_t way)
 {
 	float Accel_Y, Accel_Angle, Accel_Z, Gyro_X, Gyro_Z;
-	Temperature = Read_Temperature(); //===读取MPU6050内置温度传感器数据，近似表示主板温度。
-	if (way == 1)					  //===DMP的读取在数据采集中断读取，严格遵循时序要求
+	Temperature = Read_Temperature(); //===读取MPU6050内置温度传感器数据，近似表示主板温度�?
+	if (way == 1)					  //===DMP的读取在数据采集中断读取，严格遵循时序要�?
 	{
-		Read_DMP();				   //===读取加速度、角速度、倾角
+		Read_DMP();				   //===读取加�?�度、角速度、�?�角
 		Angle_Balance = -Roll;	 //===更新平衡倾角
-		Gyro_Balance = -gyro[0];   //===更新平衡角速度
-		Gyro_Turn = gyro[2];	   //===更新转向角速度
-		Acceleration_Z = accel[2]; //===更新Z轴加速度计
+		Gyro_Balance = -gyro[0];   //===更新平衡角�?�度
+		Gyro_Turn = gyro[2];	   //===更新转向角�?�度
+		Acceleration_Z = accel[2]; //===更新Z轴加速度�?
 	}
 	else
 	{
 		Gyro_X = (I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_XOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_XOUT_L);	//读取Y轴陀螺仪
 		Gyro_Z = (I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_ZOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_GYRO_ZOUT_L);	//读取Z轴陀螺仪
-		Accel_Y = (I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_YOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_YOUT_L); //读取X轴加速度计
-		Accel_Z = (I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_ZOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_ZOUT_L); //读取Z轴加速度计
+		Accel_Y = (I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_YOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_YOUT_L); //读取X轴加速度�?
+		Accel_Z = (I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_ZOUT_H) << 8) + I2C_ReadOneByte(devAddr, MPU6050_RA_ACCEL_ZOUT_L); //读取Z轴加速度�?
 		if (Gyro_X > 32768)
 			Gyro_X -= 65536; //数据类型转换  也可通过short强制类型转换
 		if (Gyro_Z > 32768)
@@ -763,17 +756,57 @@ void Get_Angle(uint8_t way)
 			Accel_Y -= 65536; //数据类型转换
 		if (Accel_Z > 32768)
 			Accel_Z -= 65536;							  //数据类型转换
-		Gyro_Balance = Gyro_X;							  //更新平衡角速度
+		Gyro_Balance = Gyro_X;							  //更新平衡角�?�度
 		Accel_Angle = atan2(Accel_Y, Accel_Z) * 180 / PI; //计算倾角
-		Gyro_X = Gyro_X / 16.4;							  //陀螺仪量程转换
+		Gyro_X = Gyro_X / 16.4;							  //�?螺仪量程转换
 		if (way == 2)
-			Kalman_Filter(Accel_Angle, Gyro_X); //卡尔曼滤波
+			Kalman_Filter(Accel_Angle, Gyro_X); //卡尔曼滤�?
 		else if (way == 3)
 			Yijielvbo(Accel_Angle, Gyro_X); //互补滤波
 		Angle_Balance = angle;				//更新平衡倾角
-		Gyro_Turn = Gyro_Z;					//更新转向角速度
-		Acceleration_Z = Accel_Z;			//===更新Z轴加速度计
+		Gyro_Turn = Gyro_Z;					//更新转向角�?�度
+		Acceleration_Z = Accel_Z;			//===更新Z轴加速度�?
 	}
+}
+
+int Read_Encoder(uint8_t TIMX)
+{
+   int Encoder_TIM;    
+   switch(TIMX)
+	 {
+	   case 2:  Encoder_TIM= (short)TIM2 -> CNT;  TIM2 -> CNT=0;break;
+		 case 4:  Encoder_TIM= (short)TIM4 -> CNT;  TIM4 -> CNT=0;break;	
+		 default:  Encoder_TIM=0;
+	 }
+		return Encoder_TIM;
+}
+
+void Set_Pwm(int moto1, int moto2)
+{
+	if (moto1 > 0)
+  {
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_SET); //AIN1
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_RESET);   //AIN2  
+		// AIN2 = 0, AIN1 = 1;
+  }
+	else
+  {
+		// AIN2 = 1, AIN1 = 0;
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, GPIO_PIN_RESET);   //AIN1
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_15, GPIO_PIN_SET); //AIN2 
+  }     
+	PWMA = abs(moto1);
+	if (moto2 > 0){
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);     //BIN2
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_RESET);   //BIN1 
+		// BIN1 = 0, BIN2 = 1;
+  }
+	else{
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);   //BIN2
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, GPIO_PIN_SET);    //BIN1 
+		// BIN1 = 1, BIN2 = 0;
+  }
+	PWMB = abs(moto2);
 }
 
 /* USER CODE END 4 */
@@ -818,10 +851,24 @@ void StartTask_nonblock(void const * argument)
 {
   /* USER CODE BEGIN StartTask_nonblock */
   /* Infinite loop */
+  int Balance_Pwm, Moto1, Moto2;
+
   for(;;)
   {
+		Encoder_Left = Read_Encoder(2);  //===读取编码器的�?
+		Encoder_Right = Read_Encoder(4); //===读取编码器的�?
+		
 		Get_Angle(2);
-    osDelay(1);
+    
+    Balance_Pwm = pid_Balance_Velocity(Angle_Balance, Gyro_Balance,Encoder_Left, Encoder_Right);
+
+    // Turn_Pwm = turn(Encoder_Left, Encoder_Right, Gyro_Turn); //===???PID??
+    Moto1 = Balance_Pwm ;			 //===????????PWM
+    Moto2 = Balance_Pwm ;			 //===????????PWM
+    // Xianfu_Pwm();											 //===PWM??
+    Set_Pwm(Moto1, Moto2);				   //===???PWM???
+		
+    osDelay(5);
   }
   /* USER CODE END StartTask_nonblock */
 }
