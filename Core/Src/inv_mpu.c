@@ -19,6 +19,7 @@
 #include "math.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "layerCompati_i2c.h"
 
 /* The following functions must be defined for this platform:
  * i2c_write(unsigned char slave_addr, unsigned char reg_addr,
@@ -36,13 +37,7 @@
 #define MOTION_DRIVER_TARGET_MSP430
 
 #if defined MOTION_DRIVER_TARGET_MSP430
-/*#include "msp430.h"
-#include "msp430_i2c.h"
-#include "msp430_clock.h"
-#include "msp430_interrupt.h" */
 
-#define i2c_write   i2cWrite
-#define i2c_read    i2cRead
 #define delay_ms    HAL_Delay
 #define get_ms      myget_ms
 
@@ -61,48 +56,6 @@
 #define fabs        fabsf
 #define min(a,b) ((a<b)?a:b)
 
-#elif defined EMPL_TARGET_MSP430
-#include "msp430.h"
-#include "msp430_i2c.h"
-#include "msp430_clock.h"
-#include "msp430_interrupt.h"
-#include "log.h"
-
-static inline int reg_int_cb(struct int_param_s *int_param)
-{
-    return msp430_reg_int_cb(int_param->cb, int_param->pin, int_param->lp_exit,
-        int_param->active_low);
-}
-#define log_i       MPL_LOGI
-#define log_e       MPL_LOGE
-/* labs is already defined by TI's toolchain. */
-/* fabs is for doubles. fabsf is for floats. */
-#define fabs        fabsf
-#define min(a,b) ((a<b)?a:b)
-#elif defined EMPL_TARGET_UC3L0
-/* Instead of using the standard TWI driver from the ASF library, we're using
- * a TWI driver that follows the slave address + register address convention.
- */
-#include "twi.h"
-#include "delay.h"
-#include "sysclk.h"
-#include "log.h"
-#include "sensors_xplained.h"
-#include "uc3l0_clock.h"
-#define i2c_write(a, b, c, d)   twi_write(a, b, d, c)
-#define i2c_read(a, b, c, d)    twi_read(a, b, d, c)
-/* delay_ms is a function already defined in ASF. */
-#define get_ms  uc3l0_get_clock_ms
-static inline int reg_int_cb(struct int_param_s *int_param)
-{
-    sensor_board_irq_connect(int_param->pin, int_param->cb, int_param->arg);
-    return 0;
-}
-#define log_i       MPL_LOGI
-#define log_e       MPL_LOGE
-/* UC3 is a 32-bit processor, so abs and labs are equivalent. */
-#define labs        abs
-#define fabs(x)     (((x)>0)?(x):-(x))
 #else
 //#error  Gyro driver is missing the system layer implementations.
 #endif
@@ -709,22 +662,6 @@ static int set_int_enable(unsigned char enable)
         st.chip_cfg.int_enable = tmp;
     }
     return 0;
-}
-
-
-int i2cWrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data)
-{
-
-	HAL_I2C_Mem_Write(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, data, len, 10);
-
-	return 0;
-}
-
-
-int i2cRead(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
-{
-	HAL_I2C_Mem_Read(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, buf, len, 10);
-	return 0;  
 }
 
 

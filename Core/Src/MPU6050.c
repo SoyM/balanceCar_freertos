@@ -1,5 +1,6 @@
 #include "MPU6050.h"
 #include "math.h"
+#include "layerCompati_i2c.h"
 
 #define PRINT_ACCEL (0x01)
 #define PRINT_GYRO (0x02)
@@ -18,38 +19,6 @@ float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;
 static signed char gyro_orientation[9] = {-1, 0, 0,
                                           0, -1, 0,
                                           0, 0, 1};
-
-
-uint8_t IICwriteBit(uint8_t dev, uint8_t reg, uint8_t bitNum, uint8_t data){
-    uint8_t b;
-    HAL_I2C_Mem_Read(&hi2c1, dev, reg, I2C_MEMADD_SIZE_8BIT, &b, 1, 10);
-    b = (data != 0) ? (b | (1 << bitNum)) : (b & ~(1 << bitNum));
-    return HAL_I2C_Mem_Write(&hi2c1, dev, reg, I2C_MEMADD_SIZE_8BIT, &b, 1, 10);
-}
-
-uint8_t IICwriteBits(uint8_t dev,uint8_t reg,uint8_t bitStart,uint8_t length,uint8_t data)
-{
-    uint8_t b;
-    if (HAL_I2C_Mem_Read(&hi2c1, dev, reg, I2C_MEMADD_SIZE_8BIT, &b, 1, 10) != 0) {
-        uint8_t mask = (0xFF << (bitStart + 1)) | 0xFF >> ((8 - bitStart) + length - 1);
-        data <<= (8 - length);
-        data >>= (7 - bitStart);
-        b &= mask;
-        b |= data;
-        return HAL_I2C_Mem_Write(&hi2c1, dev, reg, I2C_MEMADD_SIZE_8BIT, &b, 1, 10);
-    } else {
-        return 1;
-    }
-
-}
-
-uint8_t I2C_ReadOneByte(unsigned char I2C_Addr,unsigned char addr)
-{
-    uint8_t b;
-    HAL_I2C_Mem_Read(&hi2c1, I2C_Addr, addr, I2C_MEMADD_SIZE_8BIT, &b, 1, 10);
-    
-    return b;
-}
 
 
 static unsigned short inv_row_2_scale(const signed char *row)
@@ -185,13 +154,6 @@ void MPU6050_newValues(int16_t ax, int16_t ay, int16_t az, int16_t gx, int16_t g
 }
 
 
-
-uint8_t IICwriteBytes(uint8_t dev, uint8_t reg, uint8_t length, uint8_t* data)
-{
-
-    return 0;
-}
-
 /**************************ʵ�ֺ���********************************************
 *����ԭ��:		void MPU6050_setClockSource(uint8_t source)
 *��������:	    ����  MPU6050 ��ʱ��Դ
@@ -250,11 +212,10 @@ void MPU6050_setSleepEnabled(uint8_t enabled)
 *******************************************************************************/
 uint8_t MPU6050_getDeviceID(void)
 {
-    uint8_t tmp[2];
-    tmp[0] = MPU6050_RA_WHO_AM_I;
-    HAL_I2C_Master_Receive(&hi2c1, devAddr, tmp, 2, 10);
-    // IICreadBytes(devAddr, MPU6050_RA_WHO_AM_I, 1, buffer);
-    return tmp[1];
+    uint8_t buffer[1];
+
+    IICreadBytes(devAddr + 1, MPU6050_RA_WHO_AM_I, 1, buffer);
+    return buffer[0];
 }
 
 /**************************ʵ�ֺ���********************************************
