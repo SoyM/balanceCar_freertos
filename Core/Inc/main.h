@@ -46,6 +46,10 @@ extern "C" {
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
 extern I2C_HandleTypeDef hi2c1;
+
+extern uint8_t flag_stop;
+extern float Angle_Balance, Gyro_Balance, Gyro_Turn, Acceleration_Z;
+
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
@@ -63,6 +67,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_Pin GPIO_PIN_4
 #define LED_GPIO_Port GPIOA
+#define USER_KEY_Pin GPIO_PIN_5
+#define USER_KEY_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

@@ -5,11 +5,11 @@
 #define PWM_Amplitude 6900 //max 7200 limit 6900
 #define Balance_Kp 450
 #define Balance_Kd 1
-#define Velocity_Kp 80
-#define Velocity_Ki 1
+#define Velocity_Kp 80 // 80
+#define Velocity_Ki 1  // 1
 #define ZHONGZHI 0
 #define Gyro_Banlance 77
-#define MAX_Encoder_Integral 8000 //10000
+#define MAX_Encoder_Integral 10000 //10000
 
 uint16_t Target_Velocity, Turn_Amplitude;
 
@@ -45,12 +45,14 @@ void set_Pwm(int32_t motor1, int32_t motor2)
     PWMB = abs(motor2);
 }
 
+
+float Encoder_Integral;
 // 平衡PID 速度PID
 int pid_Balance_Velocity(float angle, float gyro, int encoder_left, int encoder_right)
 {
     int balance;
     static float Velocity, Encoder, Movement;
-    float Encoder_Integral;
+    
     Target_Velocity = 110;
 
     // 平衡

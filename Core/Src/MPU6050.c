@@ -20,7 +20,6 @@ static signed char gyro_orientation[9] = {-1, 0, 0,
                                           0, -1, 0,
                                           0, 0, 1};
 
-
 static unsigned short inv_row_2_scale(const signed char *row)
 {
     unsigned short b;
@@ -81,7 +80,6 @@ static void run_self_test(void)
 }
 
 uint8_t buffer[14];
-
 int16_t MPU6050_FIFO[6][11];
 int16_t Gx_offset = 0, Gy_offset = 0, Gz_offset = 0;
 
@@ -152,7 +150,6 @@ void MPU6050_newValues(int16_t ax, int16_t ay, int16_t az, int16_t gx, int16_t g
     }
     MPU6050_FIFO[5][10] = sum / 10;
 }
-
 
 /**************************ʵ�ֺ���********************************************
 *����ԭ��:		void MPU6050_setClockSource(uint8_t source)
@@ -268,35 +265,37 @@ void MPU6050_initialize(void)
 ����  ֵ����
 ��    �ߣ�ƽ��С��֮��
 **************************************************************************/
-void DMP_Init(void)
+uint8_t DMP_Init(void)
 {
     uint8_t temp[1] = {0};
+    uint8_t success_count = 0;
     HAL_I2C_Mem_Read(&hi2c1, 0xD1, 0x75, I2C_MEMADD_SIZE_8BIT, temp, 1, 10);
 
     if (temp[0] != 0x68)
         NVIC_SystemReset();
     if (!mpu_init())
     {
-        if (!mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL));
-            //printf("mpu_set_sensor complete ......\r\n");
-        if (!mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL));
-            //printf("mpu_configure_fifo complete ......\r\n");
-        if (!mpu_set_sample_rate(DEFAULT_MPU_HZ));
-            //printf("mpu_set_sample_rate complete ......\r\n");
-        if (!dmp_load_motion_driver_firmware());
-            //printf("dmp_load_motion_driver_firmware complete ......\r\n");
-        if (!dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation)));
-            //printf("dmp_set_orientation complete ......\r\n");
+        if (!mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL))
+            success_count++;
+        if (!mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL))
+            success_count++;
+        if (!mpu_set_sample_rate(DEFAULT_MPU_HZ))
+            success_count++;
+        if (!dmp_load_motion_driver_firmware())
+            success_count++;
+        if (!dmp_set_orientation(inv_orientation_matrix_to_scalar(gyro_orientation)))
+            success_count++;
         if (!dmp_enable_feature(DMP_FEATURE_6X_LP_QUAT | DMP_FEATURE_TAP |
                                 DMP_FEATURE_ANDROID_ORIENT | DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO |
-                                DMP_FEATURE_GYRO_CAL));
-            //printf("dmp_enable_feature complete ......\r\n");
-        if (!dmp_set_fifo_rate(DEFAULT_MPU_HZ));
-            //printf("dmp_set_fifo_rate complete ......\r\n");
+                                DMP_FEATURE_GYRO_CAL))
+            success_count++;
+        if (!dmp_set_fifo_rate(DEFAULT_MPU_HZ))
+            success_count++;
         run_self_test();
-        if (!mpu_set_dmp_state(1));
-            //printf("mpu_set_dmp_state complete ......\r\n");
+        if (!mpu_set_dmp_state(1))
+            success_count++;
     }
+    return success_count;
 }
 /**************************************************************************
 �������ܣ���ȡMPU6050����DMP����̬��Ϣ

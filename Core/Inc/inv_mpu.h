@@ -51,7 +51,6 @@ struct int_param_s {
 #define MPU_INT_STATUS_DMP_4            (0x1000)
 #define MPU_INT_STATUS_DMP_5            (0x2000)
 
-
 /* Set up APIs */
 int mpu_init(void);
 int mpu_init_slave(void);

@@ -38,15 +38,11 @@
 
 #if defined MOTION_DRIVER_TARGET_MSP430
 
+
 #define delay_ms    HAL_Delay
 #define get_ms      myget_ms
 
-//static int reg_int_cb(struct int_param_s *int_param)
-//{
-//    /*return msp430_reg_int_cb(int_param->cb, int_param->pin, int_param->lp_exit,
-//        int_param->active_low);*/
-//		return 0;
-//}	  
+
 //#define log_i(...)     do {} while (0)
 //#define log_e(...)     do {} while (0)
 #define log_e    printf
@@ -456,7 +452,8 @@ const struct hw_s hw = {
 };
 */
 const struct hw_s hw={
-  0x68,	 //addr
+//   0x68,	 //addr
+  0xD0,	 //addr
   1024,	 //max_fifo
   118,	 //num_reg
   340,	 //temp_sens
@@ -624,11 +621,6 @@ const struct hw_s hw = {
 
 #define MAX_PACKET_LENGTH (12)
 
-#ifdef AK89xx_SECONDARY
-static int setup_compass(void);
-#define MAX_COMPASS_SAMPLE_RATE (100)
-#endif
-
 /**
  *  @brief      Enable/disable data ready interrupt.
  *  If the DMP is on, the DMP interrupt is enabled. Otherwise, the data ready
@@ -662,6 +654,18 @@ static int set_int_enable(unsigned char enable)
         st.chip_cfg.int_enable = tmp;
     }
     return 0;
+}
+
+
+int i2cWrite(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *data)
+{
+    return HAL_I2C_Mem_Write(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, data, len, 10) != HAL_OK ? 1 : 0;
+}
+
+
+int i2cRead(uint8_t addr, uint8_t reg, uint8_t len, uint8_t *buf)
+{
+	return HAL_I2C_Mem_Read(&hi2c1, addr, reg, I2C_MEMADD_SIZE_8BIT, buf, len, 10) != HAL_OK ? 1 : 0; 
 }
 
 
@@ -710,7 +714,6 @@ int mpu_read_reg(unsigned char reg, unsigned char *data)
  *  Clock source: Gyro PLL\n
  *  FIFO: Disabled.\n
  *  Data ready interrupt: Disabled, active low, unlatched.
- *  @param[in]  int_param   Platform-specific parameters to interrupt API.
  *  @return     0 if successful.
  */
 int mpu_init(void)
@@ -728,7 +731,6 @@ int mpu_init(void)
     if (i2c_write(st.hw->addr, st.reg->pwr_mgmt_1, 1, &(data[0])))
         return -1;
 
-#if defined MPU6050
     /* Check product revision. */
     if (i2c_read(st.hw->addr, st.reg->accel_offs, 6, data))
         return -1;
@@ -758,24 +760,6 @@ int mpu_init(void)
         } else
             st.chip_cfg.accel_half = 0;
     }
-#elif defined MPU6500
-#define MPU6500_MEM_REV_ADDR    (0x17)
-    if (mpu_read_mem(MPU6500_MEM_REV_ADDR, 1, &rev))
-        return -1;
-    if (rev == 0x1)
-        st.chip_cfg.accel_half = 0;
-    else {
-        log_e("Unsupported software product rev %d.\r\n", rev);
-        return -1;
-    }
-
-    /* MPU6500 shares 4kB of memory between the DMP and the FIFO. Since the
-     * first 3kB are needed by the DMP, we'll use the last 1kB for the FIFO.
-     */
-    data[0] = BIT_FIFO_SIZE_1024 | 0x8;
-    if (i2c_write(st.hw->addr, st.reg->accel_cfg2, 1, data))
-        return -1;
-#endif
 
     /* Set to invalid values to ensure no I2C writes are skipped. */
     st.chip_cfg.sensors = 0xFF;
@@ -811,18 +795,9 @@ int mpu_init(void)
     if (mpu_configure_fifo(0))
         return -1;
 
-    /*if (int_param)
-        reg_int_cb(int_param);*/
-
-#ifdef AK89xx_SECONDARY
-    setup_compass();
-    if (mpu_set_compass_sample_rate(10))
-        return -1;
-#else
     /* Already disabled by setup_compass. */
     if (mpu_set_bypass(0))
         return -1;
-#endif
 
     mpu_set_sensors(0);
     return 0;
@@ -1928,60 +1903,6 @@ static int gyro_self_test(long *bias_regular, long *bias_st)
     }
     return result;
 }
-
-#ifdef AK89xx_SECONDARY
-static int compass_self_test(void)
-{
-    unsigned char tmp[6];
-    unsigned char tries = 10;
-    int result = 0x07;
-    short data;
-
-    mpu_set_bypass(1);
-
-    tmp[0] = AKM_POWER_DOWN;
-    if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, tmp))
-        return 0x07;
-    tmp[0] = AKM_BIT_SELF_TEST;
-    if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_ASTC, 1, tmp))
-        goto AKM_restore;
-    tmp[0] = AKM_MODE_SELF_TEST;
-    if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, tmp))
-        goto AKM_restore;
-
-    do {
-        delay_ms(10);
-        if (i2c_read(st.chip_cfg.compass_addr, AKM_REG_ST1, 1, tmp))
-            goto AKM_restore;
-        if (tmp[0] & AKM_DATA_READY)
-            break;
-    } while (tries--);
-    if (!(tmp[0] & AKM_DATA_READY))
-        goto AKM_restore;
-
-    if (i2c_read(st.chip_cfg.compass_addr, AKM_REG_HXL, 6, tmp))
-        goto AKM_restore;
-
-    result = 0;
-    data = (short)(tmp[1] << 8) | tmp[0];
-    if ((data > 100) || (data < -100))
-        result |= 0x01;
-    data = (short)(tmp[3] << 8) | tmp[2];
-    if ((data > 100) || (data < -100))
-        result |= 0x02;
-    data = (short)(tmp[5] << 8) | tmp[4];
-    if ((data > -300) || (data < -1000))
-        result |= 0x04;
-
-AKM_restore:
-    tmp[0] = 0 | SUPPORTS_AK89xx_HIGH_SENS;
-    i2c_write(st.chip_cfg.compass_addr, AKM_REG_ASTC, 1, tmp);
-    tmp[0] = SUPPORTS_AK89xx_HIGH_SENS;
-    i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, tmp);
-    mpu_set_bypass(0);
-    return result;
-}
-#endif
 #endif
 
 static int get_st_biases(long *gyro, long *accel, unsigned char hw_test)
@@ -2377,112 +2298,6 @@ int mpu_get_dmp_state(unsigned char *enabled)
     return 0;
 }
 
-
-/* This initialization is similar to the one in ak8975.c. */
-//static int setup_compass(void)
-//{
-//#ifdef AK89xx_SECONDARY
-//    unsigned char data[4], akm_addr;
-//
-//    mpu_set_bypass(1);
-//
-//    /* Find compass. Possible addresses range from 0x0C to 0x0F. */
-//    for (akm_addr = 0x0C; akm_addr <= 0x0F; akm_addr++) {
-//        int result;
-//        result = i2c_read(akm_addr, AKM_REG_WHOAMI, 1, data);
-//        if (!result && (data[0] == AKM_WHOAMI))
-//            break;
-//    }
-//
-//    if (akm_addr > 0x0F) {
-//        /* TODO: Handle this case in all compass-related functions. */
-//        log_e("Compass not found.\n");
-//        return -1;
-//    }
-//
-//    st.chip_cfg.compass_addr = akm_addr;
-//
-//    data[0] = AKM_POWER_DOWN;
-//    if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, data))
-//        return -1;
-//    delay_ms(1);
-//
-//    data[0] = AKM_FUSE_ROM_ACCESS;
-//    if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, data))
-//        return -1;
-//    delay_ms(1);
-//
-//    /* Get sensitivity adjustment data from fuse ROM. */
-//    if (i2c_read(st.chip_cfg.compass_addr, AKM_REG_ASAX, 3, data))
-//        return -1;
-//    st.chip_cfg.mag_sens_adj[0] = (long)data[0] + 128;
-//    st.chip_cfg.mag_sens_adj[1] = (long)data[1] + 128;
-//    st.chip_cfg.mag_sens_adj[2] = (long)data[2] + 128;
-//
-//    data[0] = AKM_POWER_DOWN;
-//    if (i2c_write(st.chip_cfg.compass_addr, AKM_REG_CNTL, 1, data))
-//        return -1;
-//    delay_ms(1);
-//
-//    mpu_set_bypass(0);
-//
-//    /* Set up master mode, master clock, and ES bit. */
-//    data[0] = 0x40;
-//    if (i2c_write(st.hw->addr, st.reg->i2c_mst, 1, data))
-//        return -1;
-//
-//    /* Slave 0 reads from AKM data registers. */
-//    data[0] = BIT_I2C_READ | st.chip_cfg.compass_addr;
-//    if (i2c_write(st.hw->addr, st.reg->s0_addr, 1, data))
-//        return -1;
-//
-//    /* Compass reads start at this register. */
-//    data[0] = AKM_REG_ST1;
-//    if (i2c_write(st.hw->addr, st.reg->s0_reg, 1, data))
-//        return -1;
-//
-//    /* Enable slave 0, 8-byte reads. */
-//    data[0] = BIT_SLAVE_EN | 8;
-//    if (i2c_write(st.hw->addr, st.reg->s0_ctrl, 1, data))
-//        return -1;
-//
-//    /* Slave 1 changes AKM measurement mode. */
-//    data[0] = st.chip_cfg.compass_addr;
-//    if (i2c_write(st.hw->addr, st.reg->s1_addr, 1, data))
-//        return -1;
-//
-//    /* AKM measurement mode register. */
-//    data[0] = AKM_REG_CNTL;
-//    if (i2c_write(st.hw->addr, st.reg->s1_reg, 1, data))
-//        return -1;
-//
-//    /* Enable slave 1, 1-byte writes. */
-//    data[0] = BIT_SLAVE_EN | 1;
-//    if (i2c_write(st.hw->addr, st.reg->s1_ctrl, 1, data))
-//        return -1;
-//
-//    /* Set slave 1 data. */
-//    data[0] = AKM_SINGLE_MEASUREMENT;
-//    if (i2c_write(st.hw->addr, st.reg->s1_do, 1, data))
-//        return -1;
-//
-//    /* Trigger slave 0 and slave 1 actions at each sample. */
-//    data[0] = 0x03;
-//    if (i2c_write(st.hw->addr, st.reg->i2c_delay_ctrl, 1, data))
-//        return -1;
-//
-//#ifdef MPU9150
-//    /* For the MPU9150, the auxiliary I2C bus needs to be set to VDD. */
-//    data[0] = BIT_I2C_MST_VDDIO;
-//    if (i2c_write(st.hw->addr, st.reg->yg_offs_tc, 1, data))
-//        return -1;
-//#endif
-//
-//    return 0;
-//#else
-//    return -1;
-//#endif
-//}
 
 /**
  *  @brief      Read raw compass data.

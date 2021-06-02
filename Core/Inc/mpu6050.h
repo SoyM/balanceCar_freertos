@@ -362,13 +362,14 @@ extern	short gyro[3], accel[3];
 extern int16_t Gx_offset,Gy_offset,Gz_offset;
 extern float Acc1G_Values;
 extern float Pitch,Roll; 
+
 void MPU6050_initialize(void); 
 uint8_t MPU6050_testConnection(void); 
 void MPU6050_getMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int16_t* gy, int16_t* gz);
 void MPU6050_getlastMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int16_t* gy, int16_t* gz);
 uint8_t MPU6050_getDeviceID(void); 
 void MPU6050_InitGyro_Offset(void);
-void DMP_Init(void);
+uint8_t DMP_Init(void);
 void Read_DMP(void);
 int Read_Temperature(void);
 #endif
