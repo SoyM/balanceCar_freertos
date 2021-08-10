@@ -3,10 +3,7 @@
 ## Usage
 
 ```sh
-cmake -DCMAKE_CXX_COMPILER=arm-none-eabi-g++
--DCMAKE_C_COMPILER=arm-none-eabi-gcc
--DCMAKE_TOOLCHAIN_FILE=../stm32f103xx.cmake 
--GNinja ..
+cmake -DCMAKE_CXX_COMPILER=arm-none-eabi-g++ -DCMAKE_C_COMPILER=arm-none-eabi-gcc -DCMAKE_TOOLCHAIN_FILE=../stm32f103xx.cmake -GNinja ..
 
 ninja clean &&  ninja
 ```
