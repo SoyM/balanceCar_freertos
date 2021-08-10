@@ -10,7 +10,7 @@
  *                  differentiate among MPL and general driver function calls.
  */
 
-#include "mpu6050.h"
+#include "MPU6050.h"
 #include "string.h"
 
 #define  MOTION_DRIVER_TARGET_MSP430

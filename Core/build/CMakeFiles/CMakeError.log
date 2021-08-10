@@ -1,0 +1,1620 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+1
+/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v7-m/libc.a(lib_a-exit.o): In function `exit':
+/build/newlib-jo3xW1/newlib-2.4.0.20160527/build/arm-none-eabi/thumb/v7-m/newlib/libc/stdlib/../../../../../../../newlib/libc/stdlib/exit.c:70: undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+1
+/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v7-m/libc.a(lib_a-exit.o): In function `exit':
+/build/newlib-jo3xW1/newlib-2.4.0.20160527/build/arm-none-eabi/thumb/v7-m/newlib/libc/stdlib/../../../../../../../newlib/libc/stdlib/exit.c:70: undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+
+
+The CXX compiler identification could not be found in "/home/pony/balanceCar_freertos/Core/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.d"
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~/ARM_Compiler_5.06u7/bin/armcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: ~armcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+No such file or directory
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: arm-none-eabi-gcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+Too many levels of symbolic links
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: armcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+Too many levels of symbolic links
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: -c 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+No such file or directory
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: arm-none-eabi-g++ 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+No such file or directory
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Determining if the C compiler works failed with the following output:
+Change Dir: /home/pony/balanceCar_freertos/Core/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/ninja" "cmTC_dc08f"
+[1/2] Building C object CMakeFiles/cmTC_dc08f.dir/testCCompiler.c.obj
+FAILED: CMakeFiles/cmTC_dc08f.dir/testCCompiler.c.obj 
+/usr/bin/armcc -DSTM32F103xB -IInc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -mcpu=cortex-m3 -std=gnu99 -fdata-sections -ffunction-sections -Wall -o CMakeFiles/cmTC_dc08f.dir/testCCompiler.c.obj   -c testCCompiler.c
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+ninja: build stopped: subcommand failed.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -c 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -Aa 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -Aa 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -D__CLASSIC_C__ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: -c 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --c++ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags: --ec++ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: -c 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: --c++ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/armcc 
+Build flags: 
+Id flags: --ec++ 
+
+The output was:
+1
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+
+
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+Determining if the C compiler works failed with the following output:
+Change Dir: /home/pony/balanceCar_freertos/Core/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/ninja" "cmTC_d6148"
+[1/2] Building C object CMakeFiles/cmTC_d6148.dir/testCCompiler.c.obj
+FAILED: CMakeFiles/cmTC_d6148.dir/testCCompiler.c.obj 
+/usr/bin/armcc -DSTM32F103xB -IInc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3 -mcpu=cortex-m3 -std=gnu99 -fdata-sections -ffunction-sections -Wall -o CMakeFiles/cmTC_d6148.dir/testCCompiler.c.obj   -c testCCompiler.c
+Error: C9511E: Unable to determine the current toolkit. Check that ARM_TOOL_VARIANT is set correctly.
+ARM Compiler could not determine the product installation it is part of. You might be able to resolve this by reinstalling the tools, or ensuring that ARM_TOOL_VARIANT and ARM_PRODUCT_PATH are set appropriately.
+Information about this error is available at: http://ds.arm.com/support/lic86
+ General licensing information is available at: http://ds.arm.com/support/licensing/
+ If you need further help, provide this complete error report to your supplier or license.support@arm.com.
+ - ARMLMD_LICENSE_FILE: unset
+ - LM_LICENSE_FILE: unset
+ - ARM_TOOL_VARIANT: unset
+ - ARM_PRODUCT_PATH: unset
+ - Product location: product not found
+ - Toolchain location: /usr/bin
+ - Selected tool variant: n/a
+Product: unknown
+Component: unknown
+Tool: armcc [4d365d]
+Engineering release. Not for production use.
+ninja: build stopped: subcommand failed.
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /usr/bin/arm-none-eabi-gcc 
+Build flags: -mcpu=cortex-m3;-std=gnu99;-fdata-sections;-ffunction-sections;-Wall
+Id flags:  
+
+The output was:
+1
+/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v7-m/libc.a(lib_a-exit.o): In function `exit':
+/build/newlib-jo3xW1/newlib-2.4.0.20160527/build/arm-none-eabi/thumb/v7-m/newlib/libc/stdlib/../../../../../../../newlib/libc/stdlib/exit.c:70: undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/arm-none-eabi-g++ 
+Build flags: -mcpu=cortex-m3;-std=c++17;-fno-rtti;-fno-exceptions;-Wall;-fdata-sections;-ffunction-sections;-MD;-Wall
+Id flags:  
+
+The output was:
+1
+/usr/lib/gcc/arm-none-eabi/6.3.1/../../../arm-none-eabi/lib/thumb/v7-m/libc.a(lib_a-exit.o): In function `exit':
+/build/newlib-jo3xW1/newlib-2.4.0.20160527/build/arm-none-eabi/thumb/v7-m/newlib/libc/stdlib/../../../../../../../newlib/libc/stdlib/exit.c:70: undefined reference to `_exit'
+collect2: error: ld returned 1 exit status
+
+
+The CXX compiler identification could not be found in "/home/pony/balanceCar_freertos/Core/build/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.d"
+

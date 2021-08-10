@@ -1,0 +1,5 @@
+/home/pony/balanceCar_freertos/Core/build/CMakeFiles/edit_cache.dir
+/home/pony/balanceCar_freertos/Core/build/CMakeFiles/upload.dir
+/home/pony/balanceCar_freertos/Core/build/CMakeFiles/balancecar_freertos.elf.dir
+/home/pony/balanceCar_freertos/Core/build/CMakeFiles/rebuild_cache.dir
+/home/pony/balanceCar_freertos/Core/build/CMakeFiles/stm.dir

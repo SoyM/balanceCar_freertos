@@ -13,7 +13,7 @@
  *                  MPU9250 (or MPU6500 w/ AK8963 on the auxiliary bus)
  */
 
-#include "mpu6050.h"
+#include "MPU6050.h"
 #include "cmsis_os.h"
 #include "string.h"
 #include "math.h"
@@ -2058,7 +2058,7 @@ int mpu_run_self_test(long *gyro, long *accel)
 #endif
     int result;
     unsigned char accel_fsr, fifo_sensors, sensors_on;
-    unsigned short gyro_fsr, sample_rate, lpf;
+    unsigned short gyro_fsr, sample_rate=0, lpf;
     unsigned char dmp_was_on;
 
     if (st.chip_cfg.dmp_on) {

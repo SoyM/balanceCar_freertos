@@ -33,7 +33,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdlib.h"
-#include "mpu6050.h"
+#include "MPU6050.h"
 #include "math.h"
 #include "filter.h"
 /* USER CODE END Includes */

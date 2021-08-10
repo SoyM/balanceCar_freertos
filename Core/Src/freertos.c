@@ -165,8 +165,8 @@ void StartDefaultTask(void const * argument)
 void StartTask_nonblock(void const * argument)
 {
   /* USER CODE BEGIN StartTask_nonblock */
-  uint8_t cnt_mistakenly_touching;
-  uint8_t last_read_userKey;
+  uint8_t cnt_mistakenly_touching = 0;
+  uint8_t last_read_userKey = 1;
 
   /* Infinite loop */
   for (;;)
