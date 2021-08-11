@@ -5,11 +5,11 @@ SET (DEVICE "STM32F103xB")
 # This is a variable which is later used here and in the CMakeLists.txt. It simply tells
 # where to find the SDK (CubeF4). Please change it accordingly if you have other 
 # version of CubeF4 installed.
-SET (CUBE_ROOT "$ENV{HOME}/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.4")
+# SET (CUBE_ROOT "$ENV{HOME}/STM32Cube/Repository/STM32Cube_FW_F1_V1.8.4")
 
 # Startup code and linker script - more on it later.
-SET (STARTUP_CODE "${CUBE_ROOT}/Projects/STM32F103RB-Nucleo/Templates/SW4STM32/startup_stm32f103xb.s")
-SET (LINKER_SCRIPT "${CUBE_ROOT}/Projects/STM32F103RB-Nucleo/Templates/SW4STM32/STM32F103RB_Nucleo/STM32F103VBIx_FLASH.ld")
+SET (STARTUP_CODE "../Core/Startup/startup_stm32f103c8tx.s")
+SET (LINKER_SCRIPT "../../STM32F103C8TX_FLASH.ld")
 
 # Magic settings. Without it CMake tries to run test programs on the host platform, which
 # fails of course.
@@ -42,9 +42,7 @@ ADD_DEFINITIONS(-D${DEVICE})
 ADD_DEFINITIONS (-DUSE_HAL_DRIVER)
 
 # Random include paths for CubeF4 peripheral drivers and CMSIS.
-# INCLUDE_DIRECTORIES("${CUBE_ROOT}/Drivers/STM32F1xx_HAL_Driver/Inc/")
-# INCLUDE_DIRECTORIES("${CUBE_ROOT}/Drivers/CMSIS/Device/ST/STM32F1xx/Include/")
-# INCLUDE_DIRECTORIES("${CUBE_ROOT}/Drivers/CMSIS/Include/")
+
 # INCLUDE_DIRECTORIES("/usr/lib/arm-none-eabi/include/")
 INCLUDE_DIRECTORIES("Inc/")
 INCLUDE_DIRECTORIES("../Drivers/STM32F1xx_HAL_Driver/Inc/")
