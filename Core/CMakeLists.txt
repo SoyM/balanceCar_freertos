@@ -10,6 +10,7 @@ ENABLE_LANGUAGE (ASM-ATT)
 # "platform" dependent, where by platform I mean STM32F1.
 # ADD_DEFINITIONS (-DHSE_VALUE=8000000)
 
+
 SET (FREERTOS_ROOT "../Middlewares/Third_Party/FreeRTOS/Source")
 SET (STM32F1xx_HAL_ROOT "../Drivers/STM32F1xx_HAL_Driver/Src")
 

@@ -9,6 +9,7 @@ SET (DEVICE "STM32F103xB")
 
 # Startup code and linker script - more on it later.
 SET (STARTUP_CODE "../Core/Startup/startup_stm32f103c8tx.s")
+# SET (LINKER_SCRIPT ${CMAKE_SOURCE_DIR}"/../../../../STM32F103C8TX_FLASH.ld")
 SET (LINKER_SCRIPT "../../STM32F103C8TX_FLASH.ld")
 
 # Magic settings. Without it CMake tries to run test programs on the host platform, which
