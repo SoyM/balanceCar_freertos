@@ -14,57 +14,26 @@ ENABLE_LANGUAGE (ASM-ATT)
 SET (FREERTOS_ROOT "../Middlewares/Third_Party/FreeRTOS/Source")
 SET (STM32F1xx_HAL_ROOT "../Drivers/STM32F1xx_HAL_Driver/Src")
 
+file(GLOB CORE_SRC_C "Src/*.c")
+file(GLOB HAL_LIB "${STM32F1xx_HAL_ROOT}/*.c")
+file(GLOB FREERTOS_LIB "${FREERTOS_ROOT}/*.c")
 
 # All the sources goes here. Adding headers isn't obligatory, but since QtCreator treats CMakeLists.txt as
 # its "project configuration" it simply makes header files appear in the source tree pane.
 ADD_EXECUTABLE(${CMAKE_PROJECT_NAME}.elf
- "../Src/main.c"
- "../Src/stm32f1xx_hal_msp.c"
- "../Src/stm32f1xx_it.c"
- "../Src/system_stm32f1xx.c"
-
- "../Src/MPU6050.c"
- "../Src/inv_mpu_dmp_motion_driver.c"
- "../Src/inv_mpu.c"
- "../Src/filter.c"
- "../Src/layerCompati_i2c.c"
- "../Src/libmotot.c"
- "../Src/gpio.c"
- "../Src/freertos.c"
- "../Src/adc.c"
- "../Src/i2c.c"
- "../Src/tim.c"
- "../Src/usart.c"
- "../Src/stm32f1xx_hal_timebase_tim.c"
+ "${CORE_SRC_C}"
 )
+
 
 # Workaround : splitting C and C++ code helps QtCreator parse header files correctly. Without it, QtCreator
 # sometimes treats C++ as C and vice versa. EDIT : this comment was written when in the ADD_EXECUTABLE C++
 # files were present.
 add_library ("stm" STATIC
  "${STARTUP_CODE}"
-
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_cortex.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_gpio.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_rcc.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_tim.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_i2c.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_adc.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_rcc_ex.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_tim_ex.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_tim_ex.c"
- "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_uart.c"
+ "${HAL_LIB}"
+ "${FREERTOS_LIB}"
 
  "${FREERTOS_ROOT}/CMSIS_RTOS/cmsis_os.c"
- "${FREERTOS_ROOT}/croutine.c"
- "${FREERTOS_ROOT}/event_groups.c"
- "${FREERTOS_ROOT}/list.c"
- "${FREERTOS_ROOT}/queue.c"
- "${FREERTOS_ROOT}/stream_buffer.c"
- "${FREERTOS_ROOT}/tasks.c"
- "${FREERTOS_ROOT}/timers.c"
- 
  "${FREERTOS_ROOT}/portable/MemMang/heap_4.c"
  "${FREERTOS_ROOT}/portable/GCC/ARM_CM3/port.c"
 )
