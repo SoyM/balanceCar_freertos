@@ -57,8 +57,6 @@ add_library ("stm" STATIC
  "${STM32F1xx_HAL_ROOT}/stm32f1xx_hal_uart.c"
 
  "${FREERTOS_ROOT}/CMSIS_RTOS/cmsis_os.c"
- "${FREERTOS_ROOT}/portable/MemMang/heap_4.c"
- "${FREERTOS_ROOT}/portable/RVDS/ARM_CM3/port.c"
  "${FREERTOS_ROOT}/croutine.c"
  "${FREERTOS_ROOT}/event_groups.c"
  "${FREERTOS_ROOT}/list.c"
@@ -66,6 +64,9 @@ add_library ("stm" STATIC
  "${FREERTOS_ROOT}/stream_buffer.c"
  "${FREERTOS_ROOT}/tasks.c"
  "${FREERTOS_ROOT}/timers.c"
+ 
+ "${FREERTOS_ROOT}/portable/MemMang/heap_4.c"
+ "${FREERTOS_ROOT}/portable/GCC/ARM_CM3/port.c"
 )
 
 

@@ -52,5 +52,5 @@ INCLUDE_DIRECTORIES("../Drivers/CMSIS/Device/ST/STM32F1xx/Include/")
 INCLUDE_DIRECTORIES("../Drivers/CMSIS/Include/")
 INCLUDE_DIRECTORIES("../Middlewares/Third_Party/FreeRTOS/Source/include/")
 INCLUDE_DIRECTORIES("../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/")
-INCLUDE_DIRECTORIES("../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3/")
+INCLUDE_DIRECTORIES("../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/")
 
