@@ -1,6 +1,0 @@
-/home/pony/balanceCar_freertos_new_cmake/build/CMakeFiles/rebuild_cache.dir
-/home/pony/balanceCar_freertos_new_cmake/build/CMakeFiles/stm32xxxx_hal.dir
-/home/pony/balanceCar_freertos_new_cmake/build/CMakeFiles/edit_cache.dir
-/home/pony/balanceCar_freertos_new_cmake/build/CMakeFiles/freertos_lib.dir
-/home/pony/balanceCar_freertos_new_cmake/build/CMakeFiles/upload.dir
-/home/pony/balanceCar_freertos_new_cmake/build/CMakeFiles/stm32proj.elf.dir
