@@ -1,8 +1,8 @@
 /**
   *************** (C) COPYRIGHT 2017 STMicroelectronics ************************
-  * @file      startup_stm32f103xb.s
+  * @file      startup_stm32f101xb.s
   * @author    MCD Application Team
-  * @brief     STM32F103xB Devices vector table for Atollic toolchain.
+  * @brief     STM32F101xB Devices vector table for Atollic toolchain.
   *            This module performs:
   *                - Set the initial SP
   *                - Set the initial PC == Reset_Handler,
@@ -62,31 +62,34 @@ defined in linker script */
 Reset_Handler:
 
 /* Copy the data segment initializers from flash to SRAM */
-  movs r1, #0
+  ldr r0, =_sdata
+  ldr r1, =_edata
+  ldr r2, =_sidata
+  movs r3, #0
   b LoopCopyDataInit
 
 CopyDataInit:
-  ldr r3, =_sidata
-  ldr r3, [r3, r1]
-  str r3, [r0, r1]
-  adds r1, r1, #4
+  ldr r4, [r2, r3]
+  str r4, [r0, r3]
+  adds r3, r3, #4
 
 LoopCopyDataInit:
-  ldr r0, =_sdata
-  ldr r3, =_edata
-  adds r2, r0, r1
-  cmp r2, r3
+  adds r4, r0, r3
+  cmp r4, r1
   bcc CopyDataInit
-  ldr r2, =_sbss
-  b LoopFillZerobss
+  
 /* Zero fill the bss segment. */
-FillZerobss:
+  ldr r2, =_sbss
+  ldr r4, =_ebss
   movs r3, #0
-  str r3, [r2], #4
+  b LoopFillZerobss
+
+FillZerobss:
+  str  r3, [r2]
+  adds r2, r2, #4
 
 LoopFillZerobss:
-  ldr r3, = _ebss
-  cmp r2, r3
+  cmp r2, r4
   bcc FillZerobss
 
 /* Call the clock system intitialization function.*/
@@ -159,16 +162,16 @@ g_pfnVectors:
   .word DMA1_Channel5_IRQHandler
   .word DMA1_Channel6_IRQHandler
   .word DMA1_Channel7_IRQHandler
-  .word ADC1_2_IRQHandler
-  .word USB_HP_CAN1_TX_IRQHandler
-  .word USB_LP_CAN1_RX0_IRQHandler
-  .word CAN1_RX1_IRQHandler
-  .word CAN1_SCE_IRQHandler
+  .word ADC1_IRQHandler
+  .word 0
+  .word 0
+  .word 0
+  .word 0
   .word EXTI9_5_IRQHandler
-  .word TIM1_BRK_IRQHandler
-  .word TIM1_UP_IRQHandler
-  .word TIM1_TRG_COM_IRQHandler
-  .word TIM1_CC_IRQHandler
+  .word 0
+  .word 0
+  .word 0
+  .word 0
   .word TIM2_IRQHandler
   .word TIM3_IRQHandler
   .word TIM4_IRQHandler
@@ -183,7 +186,7 @@ g_pfnVectors:
   .word USART3_IRQHandler
   .word EXTI15_10_IRQHandler
   .word RTC_Alarm_IRQHandler
-  .word USBWakeUp_IRQHandler
+  .word 0
   .word 0
   .word 0
   .word 0
@@ -283,35 +286,11 @@ g_pfnVectors:
   .weak DMA1_Channel7_IRQHandler
   .thumb_set DMA1_Channel7_IRQHandler,Default_Handler
 
-  .weak ADC1_2_IRQHandler
-  .thumb_set ADC1_2_IRQHandler,Default_Handler
-
-  .weak USB_HP_CAN1_TX_IRQHandler
-  .thumb_set USB_HP_CAN1_TX_IRQHandler,Default_Handler
-
-  .weak USB_LP_CAN1_RX0_IRQHandler
-  .thumb_set USB_LP_CAN1_RX0_IRQHandler,Default_Handler
-
-  .weak CAN1_RX1_IRQHandler
-  .thumb_set CAN1_RX1_IRQHandler,Default_Handler
-
-  .weak CAN1_SCE_IRQHandler
-  .thumb_set CAN1_SCE_IRQHandler,Default_Handler
+  .weak  ADC1_IRQHandler
+  .thumb_set ADC1_IRQHandler,Default_Handler
 
   .weak EXTI9_5_IRQHandler
   .thumb_set EXTI9_5_IRQHandler,Default_Handler
-
-  .weak TIM1_BRK_IRQHandler
-  .thumb_set TIM1_BRK_IRQHandler,Default_Handler
-
-  .weak TIM1_UP_IRQHandler
-  .thumb_set TIM1_UP_IRQHandler,Default_Handler
-
-  .weak TIM1_TRG_COM_IRQHandler
-  .thumb_set TIM1_TRG_COM_IRQHandler,Default_Handler
-
-  .weak TIM1_CC_IRQHandler
-  .thumb_set TIM1_CC_IRQHandler,Default_Handler
 
   .weak TIM2_IRQHandler
   .thumb_set TIM2_IRQHandler,Default_Handler
@@ -355,8 +334,6 @@ g_pfnVectors:
   .weak RTC_Alarm_IRQHandler
   .thumb_set RTC_Alarm_IRQHandler,Default_Handler
 
-  .weak USBWakeUp_IRQHandler
-  .thumb_set USBWakeUp_IRQHandler,Default_Handler
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

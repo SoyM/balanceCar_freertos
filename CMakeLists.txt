@@ -34,6 +34,7 @@ message(STATUS "MCU_FAMILY: ${MCU_FAMILY}")
 message(STATUS "MCU_NAME: ${MCU_NAME}")
 message(STATUS "Specified C compiler: ${CMAKE_C_COMPILER}")
 message(STATUS "Linker script: ${LINKER_SCRIPT}")
+message(STATUS "Startup code: ${STARTUP_CODE}")
 message(STATUS "Use LL library: ${USE_LL_LIB}")
 message(STATUS "Use HAL library: ${USE_HAL_LIB}")
 message(STATUS "Use Segger SystemView library: ${USE_SYSTEM_VIEW}")
@@ -67,7 +68,7 @@ target_include_directories(cmsis INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F7xx/Include>)
 
 # add_subdirectory(${PROJ_LIB_PATH}/STM32F1xx_HAL_Driver ${CMAKE_BINARY_DIR}/libraries/STM32F1xx_HAL_Driver)
-file(GLOB STM32_HAL_SRC "Drivers/STM32F1xx_HAL_Driver/Src/*.c")
+file(GLOB STM32_HAL_SRC "Drivers/${STM32_HAL_DIR_NAME}/Src/*.c")
 file(GLOB FREERTOS_LIB "${FREERTOS_ROOT}/*.c")
 
 if(USE_HAL_LIB)
@@ -85,15 +86,15 @@ if(USE_HAL_LIB)
 endif()
 target_link_libraries(stm32xxxx_hal PUBLIC cmsis)
 target_include_directories(stm32xxxx_hal PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/STM32F1xx_HAL_Driver/Inc>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/${STM32_HAL_DIR_NAME}/Inc>
   PRIVATE Src)
 
 # FreeRTOS
 file(GLOB FREERTOS_LIB "Middlewares/Third_Party/FreeRTOS/Source/*.c")
 set(FREERTOS_PORT
     ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/port.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/portable/MemMang/heap_4.c
+    ${FREERTOS_PROT_PATH}/port.c
 )
 add_library(freertos_lib ${FREERTOS_LIB} ${FREERTOS_PORT})
 target_link_libraries(freertos_lib PUBLIC cmsis)
@@ -102,7 +103,7 @@ target_include_directories(freertos_lib PUBLIC
 target_include_directories(freertos_lib PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS>)
 target_include_directories(freertos_lib PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3>)
+  $<BUILD_INTERFACE:${FREERTOS_PROT_PATH}>)
 
 
 # STM32CubeMX generated source files
@@ -120,5 +121,5 @@ include(${STM32_CMAKE_DIR}/cmake/stm32-gcc-postbuild.cmake)
 # include(${CMAKE_CURRENT_SOURCE_DIR}/${STM32_PROJ_FOLDER}/stm32-gcc-jlink.cmake)
 
 FIND_PROGRAM (OPENOCD openocd)
-ADD_CUSTOM_TARGET("upload" DEPENDS ${ELF_TARGET} COMMAND ${OPENOCD} -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg -c 'program ${ELF_TARGET} verify reset exit')
+ADD_CUSTOM_TARGET("upload" DEPENDS ${ELF_TARGET} COMMAND ${OPENOCD} -f /usr/share/openocd/scripts/interface/${OPENOCD_INTERFACE}.cfg -f /usr/share/openocd/scripts/target/${OPENOCD_MCU_TYPE}.cfg -c 'program ${ELF_TARGET} verify reset exit')
 
