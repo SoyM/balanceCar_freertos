@@ -1,0 +1,11 @@
+version: '3'
+services:
+  arm-m-build:
+    build: .
+    restart: always
+    command: mkdir build && cd build && cmake .. && make
+    # network_mode: "host"
+    # ports:
+    #   - "80:80"
+    volumes:
+      - ./:/usr/src/app/
