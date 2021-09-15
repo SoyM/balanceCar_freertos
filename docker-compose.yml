@@ -4,7 +4,8 @@ services:
     build: .
     image: arm-m-build
     # restart: always
-    command: sh -c "mkdir -p build && cd build && cmake .. && make clean && make"
+    # command: sh -c "mkdir -p build && cd build && cmake .. -GNinja && ninja clean && ninja"
+    command: sh -c "mkdir -p build && cd build && cmake .. && make clean && make -j"
     # network_mode: "host"
     # ports:
     #   - "80:80"
