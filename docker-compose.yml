@@ -3,6 +3,7 @@ services:
   arm-m-build:
     build: .
     image: arm-m-build
+    # user: $USER
     # restart: always
     # command: sh -c "mkdir -p build && cd build && cmake .. -GNinja && ninja clean && ninja"
     command: sh -c "mkdir -p build && cd build && cmake .. && make clean && make -j"

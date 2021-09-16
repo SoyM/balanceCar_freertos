@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* ninja
+* ninja-build
 * openocd
 
 ## Usage
@@ -10,12 +10,25 @@
 build
 
 ```sh
-cmake -DCMAKE_CXX_COMPILER=arm-none-eabi-g++ -DCMAKE_C_COMPILER=arm-none-eabi-gcc -DCMAKE_TOOLCHAIN_FILE=../stm32f103xx.cmake -GNinja ..
-
-ninja clean &&  ninja
-
+# 
+# ninja
+# 
+mkdir -p build && cd build && cmake -GNinja .. && ninja clean &&  ninja
+# upload
 ninjia upload 
+
+# or
+# 
+# make
+# 
+mkdir -p build && cd build && cmake .. && make clean &&  make -j
+# upload
+make upload
 ```
+
+## 更换MCU
+
+修改 target-def.cmake
 
 ## To hex & bin
 
