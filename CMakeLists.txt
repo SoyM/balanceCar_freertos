@@ -1,11 +1,16 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(stm32proj C CXX ASM)
-
+cmake_minimum_required(VERSION 3.6)
 # adjust project folder name if necessary
 set(STM32_PROJ_FOLDER stm32proj)
 
 message(STATUS "Building project: ${PROJECT_NAME}")
 set(STM32_CMAKE_DIR "${CMAKE_SOURCE_DIR}")
+
+## Setup cross-compile toolchain 
+set(CROSS_COMPILE_PREFIX arm-none-eabi-)
+include(${STM32_CMAKE_DIR}/cmake/gcc-arm-none-eabi.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/target-def.cmake)
+
+project(stm32proj C CXX ASM)
 
 # set the build type
 if(NOT CMAKE_BUILD_TYPE) 
@@ -18,10 +23,6 @@ elseif(CMAKE_BUILD_TYPE MATCHES Release)
   message(STATUS "Build type: Release")
 endif()
 
-## Setup cross-compile toolchain 
-set(CROSS_COMPILE_PREFIX arm-none-eabi-)
-include(${STM32_CMAKE_DIR}/cmake/gcc-arm-none-eabi.cmake)
-include(${CMAKE_CURRENT_SOURCE_DIR}/target-def.cmake)
 
 ## auto-set variables from user input
 set(MCU_FLAGS "${CPU} -mthumb ${FPU} ${FLOAT_ABI}")
@@ -122,4 +123,3 @@ include(${STM32_CMAKE_DIR}/cmake/stm32-gcc-postbuild.cmake)
 
 FIND_PROGRAM (OPENOCD openocd)
 ADD_CUSTOM_TARGET("upload" DEPENDS ${ELF_TARGET} COMMAND ${OPENOCD} -f /usr/share/openocd/scripts/interface/${OPENOCD_INTERFACE}.cfg -f /usr/share/openocd/scripts/target/${OPENOCD_MCU_TYPE}.cfg -c 'program ${ELF_TARGET} verify reset exit')
-
