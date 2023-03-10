@@ -42,8 +42,6 @@ set(VERSION_MAJOR 0 CACHE STRING "Project major version number.")
 set(VERSION_MINOR 1 CACHE STRING "Project minor version number.")
 set(VERSION_PATCH 0 CACHE STRING "Project patch version number.")
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc)
-
 if(USE_SYSTEM_VIEW)
   add_definitions("-DENABLE_SYSTEMVIEW")
 endif()
@@ -56,6 +54,7 @@ set(PROJ_LIB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Drivers)
 # add_subdirectory(driver)
 
 # common libraries
+# CMSIS
 # add_subdirectory(${PROJ_LIB_PATH}/CMSIS ${CMAKE_BINARY_DIR}/libraries/CMSIS)
 add_library(cmsis INTERFACE)
 target_compile_definitions(cmsis INTERFACE -D${MCU_FAMILY})
@@ -66,9 +65,10 @@ target_include_directories(cmsis INTERFACE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F4xx/Include>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32F7xx/Include>)
 
+# DRIVER
+# STM32F1xx
 # add_subdirectory(${PROJ_LIB_PATH}/STM32F1xx_HAL_Driver ${CMAKE_BINARY_DIR}/libraries/STM32F1xx_HAL_Driver)
 file(GLOB STM32_HAL_SRC "Drivers/${STM32_HAL_DIR_NAME}/Src/*.c")
-file(GLOB FREERTOS_LIB "${FREERTOS_ROOT}/*.c")
 
 if(USE_HAL_LIB)
   set(STM32_LIB_SRC ${STM32_HAL_SRC} ${STM32F1_LL_SRC})
@@ -91,7 +91,19 @@ target_include_directories(stm32xxxx_hal PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/${STM32_HAL_DIR_NAME}/Inc>
   PRIVATE Src)
 
+# GDF4XX
+file(GLOB GD32_HAL_SRC "Drivers/GD32F4xx_Firmware_Library_V3.0.4/Firmware/GD32F4xx_standard_peripheral/Source/*.c")
+set(GD32_LIB_SRC ${GD32_HAL_SRC})
+add_library(gd32xxxx_hal ${GD32_LIB_SRC})
+target_include_directories(gd32xxxx_hal PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/GD32F4xx_Firmware_Library_V3.0.4/Firmware/GD32F4xx_standard_peripheral/Include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/GD32F4xx_Firmware_Library_V3.0.4/Firmware/CMSIS/GD/GD32F4xx/Include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Drivers/GD32F4xx_Firmware_Library_V3.0.4/Firmware/CMSIS>
+  PRIVATE Src)
+target_compile_definitions(gd32xxxx_hal PUBLIC -DGD32F407)
+
 # FreeRTOS
+# file(GLOB FREERTOS_LIB "${FREERTOS_ROOT}/*.c")
 file(GLOB FREERTOS_LIB "Middlewares/Third_Party/FreeRTOS/Source/*.c")
 set(FREERTOS_PORT
   ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
@@ -108,12 +120,14 @@ target_include_directories(freertos_lib PUBLIC
   $<BUILD_INTERFACE:${FREERTOS_PROT_PATH}>)
 
 # STM32CubeMX generated source files
-file(GLOB CUBEMX_SRC "Core/Src/*.c")
-add_executable(${ELF_TARGET} ${CUBEMX_SRC} ${STARTUP_CODE})
+set(EXTRA_LINK_FLAGS "-Wl,-Map=${PROJECT_NAME}.map,--cref,--no-warn-mismatch -specs=nano.specs -specs=nosys.specs")
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc)
+file(GLOB CUBEMX_SRC "Core/Src/*.c")
+
+add_executable(${ELF_TARGET} ${CUBEMX_SRC} ${STARTUP_CODE})
 target_compile_definitions(${ELF_TARGET} PUBLIC -D${MCU_FAMILY})
 target_link_libraries(${ELF_TARGET} PUBLIC cmsis stm32xxxx_hal freertos_lib -lc -lm -lnosys)
-set(EXTRA_LINK_FLAGS "-Wl,-Map=${PROJECT_NAME}.map,--cref,--no-warn-mismatch -specs=nano.specs -specs=nosys.specs")
 target_link_libraries(${ELF_TARGET} PRIVATE -T${LINKER_SCRIPT} ${EXTRA_LINK_FLAGS})
 target_include_directories(${ELF_TARGET} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc>)
