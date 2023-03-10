@@ -5,6 +5,8 @@ elseif(CMAKE_BUILD_TYPE MATCHES Release)
     set(DBG_FLAGS "-O0")
 endif()
 
+set(MCU_FLAGS "${CPU} -mthumb ${FPU} ${FLOAT_ABI}")
+
 # stm32 gcc common flags
 message(STATUS "MCU_FLAGS: ${MCU_FLAGS}")
 message(STATUS "DBG_FLAGS: ${DBG_FLAGS}")
@@ -22,9 +24,7 @@ set(CMAKE_ASM_FLAGS "${MCU_FLAGS} -x assembler-with-cpp ${DBG_FLAGS} " CACHE INT
 set(CMAKE_ASM_FLAGS_DEBUG "" CACHE INTERNAL "ASM compiler flags: Debug")
 set(CMAKE_ASM_FLAGS_RELEASE "" CACHE INTERNAL "ASM compiler flags: Release")
 
-set(MCU_FLAGS "${CPU} -mthumb ${FPU} ${FLOAT_ABI}")
 set(LINK_FLAGS "${MCU_FLAGS} -Wl,--gc-sections")
-set(EXTRA_LINK_FLAGS "-Wl,-Map=${PROJECT_NAME}.map,--cref,--no-warn-mismatch -specs=nano.specs -specs=nosys.specs")
 
 set(CMAKE_EXE_LINKER_FLAGS "${LINK_FLAGS}" CACHE INTERNAL "Exe linker flags")
 set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "" CACHE INTERNAL "Shared linker flags")

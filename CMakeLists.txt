@@ -113,6 +113,7 @@ add_executable(${ELF_TARGET} ${CUBEMX_SRC} ${STARTUP_CODE})
 
 target_compile_definitions(${ELF_TARGET} PUBLIC -D${MCU_FAMILY})
 target_link_libraries(${ELF_TARGET} PUBLIC cmsis stm32xxxx_hal freertos_lib -lc -lm -lnosys)
+set(EXTRA_LINK_FLAGS "-Wl,-Map=${PROJECT_NAME}.map,--cref,--no-warn-mismatch -specs=nano.specs -specs=nosys.specs")
 target_link_libraries(${ELF_TARGET} PRIVATE -T${LINKER_SCRIPT} ${EXTRA_LINK_FLAGS})
 target_include_directories(${ELF_TARGET} PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc>)
